@@ -428,6 +428,35 @@ body {
   border: 1px solid #d4b33a;
 }
 
+/* Music Toggle Button */
+.music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(42, 75, 55, 0.95);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Playfair";
+  font-size: 14px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.music-toggle:hover {
+  background-color: rgba(42, 75, 55, 1);
+  transform: scale(1.05);
+  border-color: #d4b33a;
+}
+
+.music-toggle.playing {
+  background-color: #c9a227;
+  color: #1f3d2b;
+}
+
 .vire-icon {
   font-size: 48px;
   color: #c9a227;

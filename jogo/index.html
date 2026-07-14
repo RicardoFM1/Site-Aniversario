@@ -383,10 +383,74 @@
     margin:-12px 0 20px;
     font-weight:700;
   }
+
+  /* Back Button */
+  .back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(42, 75, 55, 0.95);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+  }
+
+  .back-button:hover {
+    background-color: rgba(42, 75, 55, 1);
+    transform: scale(1.05);
+    border-color: #ffce54;
+  }
+
+  /* Music Toggle Button */
+  .music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(42, 75, 55, 0.95);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .music-toggle:hover {
+    background-color: rgba(42, 75, 55, 1);
+    transform: scale(1.05);
+    border-color: #ffce54;
+  }
+
+  .music-toggle.playing {
+    background-color: #ffce54;
+    color: #5b3b57;
+  }
 </style>
 </head>
 <body>
 <div id="app">
+    <audio id="bgMusic" loop>
+    <source src="../musica/Olivia Rodrigo, Robert Smith - whats wrong with me (Lyric Video).mp3" type="audio/mpeg">
+  </audio>
+
+  
+  <a href="../telaPrincipal/tela.html" class="back-button">← Voltar</a>
+  
+
+  <button id="musicToggle" class="music-toggle">🔊</button>
+  
   <div class="bg-balloons" id="bgBalloons"></div>
 
   <div class="banner-wrap">
@@ -748,6 +812,39 @@
 
   updateStageMetrics();
 })();
+
+// ===== MUSIC CONTROL =====
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+let isMusicPlaying = false;
+
+window.addEventListener('load', () => {
+  if (bgMusic) {
+    bgMusic.play().catch(err => console.log('Autoplay blocked:', err));
+    if (musicToggle) {
+      musicToggle.classList.add('playing');
+      musicToggle.textContent = '🔊';
+      isMusicPlaying = true;
+    }
+  }
+});
+
+if (musicToggle && bgMusic) {
+  musicToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isMusicPlaying) {
+      bgMusic.pause();
+      musicToggle.classList.remove('playing');
+      musicToggle.textContent = '🔇';
+      isMusicPlaying = false;
+    } else {
+      bgMusic.play();
+      musicToggle.classList.add('playing');
+      musicToggle.textContent = '🔊';
+      isMusicPlaying = true;
+    }
+  });
+}
 </script>
 </body>
 </html>

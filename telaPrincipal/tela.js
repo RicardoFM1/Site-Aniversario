@@ -31,3 +31,48 @@ if (textWrapper) {
 
 const divTexto = document.querySelector('.divTexto')
 
+
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+let isMusicPlaying = false;
+
+
+window.addEventListener('load', () => {
+  if (bgMusic) {
+    bgMusic.play().catch(err => console.log('Autoplay blocked:', err));
+    if (musicToggle) {
+      musicToggle.classList.add('playing');
+      musicToggle.textContent = '🔊';
+      isMusicPlaying = true;
+    }
+  }
+});
+
+if (musicToggle && bgMusic) {
+  musicToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isMusicPlaying) {
+      bgMusic.pause();
+      musicToggle.classList.remove('playing');
+      musicToggle.textContent = '🔇';
+      isMusicPlaying = false;
+    } else {
+      bgMusic.play();
+      musicToggle.classList.add('playing');
+      musicToggle.textContent = '🔊';
+      isMusicPlaying = true;
+    }
+  });
+}
+
+
+function flipCard(e) {
+  if (e) {
+    e.stopPropagation();
+  }
+  const cardElement = document.getElementById('cardFlip');
+  if (cardElement) {
+    cardElement.classList.toggle('flipped');
+  }
+}
+
