@@ -4,7 +4,10 @@
 
 body,
 html {
-  background-color: #1f3d2b;
+  background:
+    radial-gradient(circle at top left, rgba(255, 215, 140, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(242, 174, 184, 0.18), transparent 28%),
+    linear-gradient(180deg, #193122 0%, #1f3d2b 48%, #122518 100%);
   overflow-x: hidden;
 }
 
@@ -15,7 +18,34 @@ html {
   color: white;
 }
 
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  top: 3%;
+  left: -80px;
+  background: rgba(255, 215, 140, 0.18);
+}
+
+body::after {
+  right: -90px;
+  bottom: 8%;
+  background: rgba(242, 174, 184, 0.18);
+}
+
 .divCentral {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -26,26 +56,40 @@ html {
   align-items: center;
 }
 
+.hero-card {
+  width: min(100%, 720px);
+  padding: 24px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+}
+
 .divImagem {
   display: flex;
   width: 100%;
   max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 40px;
+  border-radius: 22px;
+  margin-bottom: 24px;
   justify-content: center;
   align-items: center;
   align-content: center;
   overflow: hidden;
+  padding: 10px;
+  background: linear-gradient(135deg, rgba(242, 174, 184, 0.28), rgba(201, 162, 39, 0.2));
 }
 
 
 
 .imagem {
-  width: 300px;
-  border-radius: 10px;
+  width: min(100%, 420px);
+  border-radius: 20px;
   max-width: 90%;
   height: auto;
   animation: float 6s ease-in-out infinite;
+  object-fit: cover;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 .divPodio, .divBuque, .divLasanha{
@@ -76,16 +120,26 @@ html {
   height: auto;
 }
 
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
 .aniversario {
   font-family: "Playfair";
-  font-size: 28px;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 100;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f8e3af;
 }
 
 .textoMaria {
   font-family: "Parisienne", cursive;
-  font-size: 78px;
-  margin-top: 20px;
+  font-size: clamp(4.0rem, 12vw, 6.7rem);
+  margin-top: 4px;
   font-weight: 900;
   color: #f2aeb8;
   text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
@@ -93,6 +147,15 @@ html {
   animation: fadeInUp 1.2s ease forwards;
   animation-delay: 0.6s;
   overflow: hidden;
+}
+
+.hero-subtitle {
+  margin: 6px 0 0;
+  max-width: 520px;
+  font-family: "Jost", sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.6;
 }
 
 .textoMaria .letter {
@@ -171,7 +234,7 @@ body {
 
 .label {
   font-family: "Parisienne", cursive;
-  font-size: 20px;
+  font-size: 18px;
   color: #c9a227;
   white-space: nowrap;
   letter-spacing: 0.02em;
@@ -467,11 +530,11 @@ body {
 
 .confetti {
   color: white;
-  background-color: #315f44;
+  background: linear-gradient(135deg, #3b7250, #264a33);
   border: none;
-  margin-top: 20px;
+  margin-top: 22px;
   padding: 14px 24px;
-  border-radius: 14px;
+  border-radius: 999px;
   font-family: "Playfair";
   font-size: 16px;
   border: 1px solid rgba(255, 255, 255, 0.479);
